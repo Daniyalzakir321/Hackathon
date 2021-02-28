@@ -64,7 +64,8 @@ console.log(dd)
                         Email: data.UserEmail,
                         VacancyDateTime: dateTime,
                         CompanyReg: dd.DateTime,
-                        TimeStamp: firebase.firestore.FieldValue.serverTimestamp()
+                        TimeStamp: firebase.firestore.FieldValue.serverTimestamp(),
+                        Apply: 'false'
                     })
                     .then(() => {
                         setJn("")

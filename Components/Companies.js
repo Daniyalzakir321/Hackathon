@@ -14,7 +14,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useSelector } from 'react-redux'
 
 
-export default function Companies({ navigation }) {
+export default function Companies({ navigation, route }) {
 
     const datar = useSelector(state => state.user)
     console.log(datar.UserEmail)
@@ -98,7 +98,10 @@ export default function Companies({ navigation }) {
                                     }}><MaterialCommunityIcons name="delete" size={30} color="black" /></Text>
                                 </TouchableOpacity>
 
-                                <TouchableOpacity activeOpacity={0.4} onPress={() => { edit(d.CompanyEmail) }}
+                                <TouchableOpacity activeOpacity={0.4} onPress={() =>navigation.navigate('EC',{
+                                    // key: d.Id,
+                                        email: d.CompanyEmail,
+                                    })}
                                     style={{ marginVertical: 14, width: 30, borderRadius: 50 }}>
                                     <Text style={{
                                         color: 'black', fontWeight: 'bold', fontSize: 27,

@@ -30,7 +30,27 @@ export default function StudentDashboard({navigation, route}) {
 
     return (
         <View style={styles.container}>
+            
             <StatusBar  backgroundColor="#3b7ae4" />
+
+            <View style={{ flexDirection: 'row', justifyContent: 'space-around', backgroundColor: "#3b7ae4", elevation: 5, width: '100%', }}>
+                <TouchableOpacity activeOpacity={0.8} onPress={() => {}}
+                    style={{ marginLeft: -20, marginVertical: 14, width: 30, }}>
+                    <Text style={{
+                        color: 'white', fontWeight: 'bold', fontSize: 27,
+                        textShadowColor: 'grey', textShadowOffset: { width: 1, height: 1 }, textShadowRadius: 5,
+                    }}></Text>
+                </TouchableOpacity>
+                <Text style={{
+                    color: 'white', fontWeight: 'bold', marginVertical: 15, fontSize: 20,
+                    textShadowColor: 'grey', textShadowOffset: { width: 1, height: 1 }, textShadowRadius: 5,
+                }}>Student Dashboard</Text>
+                <Text style={{
+                    color: 'white', fontWeight: 'bold', marginVertical: 15, fontSize: 20,
+                    textShadowColor: 'grey', textShadowOffset: { width: 1, height: 1 }, textShadowRadius: 5,
+                }}></Text>
+            </View>
+           
             <View style={styles.start}>
 
                         <TouchableOpacity activeOpacity={0.8} onPress={() => { navigation.navigate('Vacancies') }} style={{ backgroundColor: '#ffff', borderRadius: 10, padding: 20, paddingHorizontal: 25, alignItems: 'center', borderColor: "#3b7ae4", borderWidth: 3, marginTop:10 }} >

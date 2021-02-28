@@ -34,6 +34,8 @@ export default function Vacancies({ navigation }) {
                     creg: doc.data().CompanyReg,
                     pn: doc.data().PhoneNum,
                     dateTime: doc.data().DateTime,
+                    apply: doc.data().Apply,
+
                 }))
 
             )
@@ -41,15 +43,31 @@ export default function Vacancies({ navigation }) {
     }, [])
 
 
-    
-const del = (CompanyEmail)=>{
-    console.log(CompanyEmail)
-    firestore().collection('Job').doc(CompanyEmail).delete()
-}
 
-const edit = (CompanyEmail)=>{
-    // firestore().collection('Student').doc(del).delete()
-}
+    const del = (CompanyEmail) => {
+        console.log(CompanyEmail)
+        firestore().collection('Job').doc(CompanyEmail).delete()
+    }
+
+    const Appl = (a, Id) => {
+        console.log(a,Id)
+        if(a=='false'){
+        firestore().collection('Job').doc(Id).update({
+            Apply: 'true',
+        })  
+        .then(() => {
+                Alert.alert('Apply! ', 'Applied Successfully');
+            })
+        }
+       else {
+            firestore().collection('Job').doc(Id).update({
+                Apply: 'false',
+            })
+             .then(() => {
+                    Alert.alert('Apply! ', 'Applied Cancelled');
+                })
+            }
+    }
 
 
     return (
@@ -100,7 +118,7 @@ const edit = (CompanyEmail)=>{
                                         }}><MaterialCommunityIcons name="delete" size={30} color="black" /></Text>
                                     </TouchableOpacity>
 
-                                    <TouchableOpacity activeOpacity={0.4} onPress={() => {edit(d.Id)}}
+                                    <TouchableOpacity activeOpacity={0.4} onPress={() => { edit(d.Id) }}
                                         style={{ marginVertical: 14, width: 30, borderRadius: 50 }}>
                                         <Text style={{
                                             color: '#ffff', fontWeight: 'bold', fontSize: 27,
@@ -127,12 +145,23 @@ const edit = (CompanyEmail)=>{
 
                                 </View>
                             </View>
+                            {d.apply == 'true' ?
+                                <TouchableOpacity style={{ backgroundColor: "#3b7ae4", borderRadius: 15, marginVertical: 15 }} onPress={() => { Appl("true", d.Id) }}>
+                                    <Text style={{
+                                        fontSize: 17, fontWeight: 'bold', color: '#ffff', paddingHorizontal: 20, paddingVertical: 5,
+                                    }}>  Applied  </Text>
+                                </TouchableOpacity>
 
-                            <TouchableOpacity style={{ backgroundColor: "#3b7ae4", borderRadius: 15, marginVertical: 15 }} onPress={() => { }}>
-                                <Text style={{
-                                    fontSize: 17, fontWeight: 'bold', color: '#ffff', paddingHorizontal: 20, paddingVertical: 5,
-                                }}>  Apply  </Text>
-                            </TouchableOpacity>
+                                :
+
+                                    <TouchableOpacity style={{ backgroundColor: "#3b7ae4", borderRadius: 15, marginVertical: 15 }} onPress={() => { Appl("false", d.Id) }}>
+                                        <Text style={{
+                                            fontSize: 17, fontWeight: 'bold', color: '#ffff', paddingHorizontal: 20, paddingVertical: 5,
+                                        }}>  Apply  </Text>
+                                    </TouchableOpacity>
+                                 
+                            }
+
 
                         </TouchableOpacity>
                     </>

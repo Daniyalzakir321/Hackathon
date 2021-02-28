@@ -110,23 +110,6 @@ const edit = (StudentEmail)=>{
             <Ionicons name="search" size={17} color="grey" />
         </TouchableOpacity>
 
-        {/* <TouchableOpacity activeOpacity={0.8} style={{ flexDirection: 'row', justifyContent: 'space-around', backgroundColor: '#ffff', borderRadius: 25, marginTop: 5, marginBottom: 5, marginHorizontal: 30, paddingHorizontal: 15, elevation: 4, alignItems: 'center' }} >
-            <RNPickerSelect onValueChange={(text) => { setSearc(text) }}
-                placeholder={{ label: "Search by Skills", value: '', }}
-                style={{ ...pickerSelectStyles }}
-                useNativeAndroidPickerStyle={false}
-                items={[
-                    { label: 'All Skills', value: 'All Skills' },
-                    { label: 'React', value: 'React' },
-                    { label: 'React Native', value: 'React Native' },
-                    { label: 'Flutter', value: 'Flutter' },
-                    { label: 'Javascript', value: 'Javascript' },
-                ]}
-            />
-            <Ionicons name="search" size={17} color="grey" />
-        </TouchableOpacity> */}
-
-
 
         <ScrollView style={styles.end}>
             {filterSearch.map((d, i) => {
@@ -138,7 +121,7 @@ const edit = (StudentEmail)=>{
                             //     key: d.Id,
                             //     // cn: d.cn,
                             // })
-                        }} style={styles.data} key={i}>
+                        }} style={styles.data} >
 
                             <View style={{
                                 // justifyContent: 'space-between',
@@ -156,9 +139,12 @@ const edit = (StudentEmail)=>{
                                         }}><MaterialCommunityIcons name="delete" size={30} color="black" /></Text>
                                     </TouchableOpacity>
 
-                                    <TouchableOpacity activeOpacity={0.4} onPress={() => { navigation.navigate('EditStudent',{
-                                        email: d.StudentEmail,
-                                    })}}
+                                    <TouchableOpacity activeOpacity={0.4} onPress={() => { navigation.navigate('ES',{
+                                        email: d.StudentEmail
+                                    })
+                                }
+                                
+                                }
                                         style={{ marginVertical: 14, width: 30, borderRadius: 50 }}>
                                         <Text style={{
                                             color: 'black', fontWeight: 'bold', fontSize: 27,
@@ -185,6 +171,7 @@ const edit = (StudentEmail)=>{
                                     <Text style={{ fontSize: 15, textTransform: 'capitalize', paddingTop: 2 }}>   Depart:     {d.department}</Text>
                                     <Text style={{ fontSize: 15, textTransform: 'capitalize', paddingTop: 2 }}>   Skills:        {d.skills}</Text>
                                     <Text style={{ fontSize: 15, textTransform: 'capitalize', paddingTop: 2 }}>   Qualifi:      {d.qualification}</Text>
+                                    <Text style={{ fontSize: 15, textTransform: 'capitalize', paddingTop: 2 }}>   Email:        {d.StudentEmail}</Text>
                                     <Text style={{ fontSize: 15, textTransform: 'capitalize', paddingTop: 2 }}>   Phone:      {d.pn}</Text>
                                     <Text style={{ fontSize: 15, textTransform: 'capitalize', paddingTop: 2 }}>   Reg At:      {d.DateTime}</Text>
                                 </View>

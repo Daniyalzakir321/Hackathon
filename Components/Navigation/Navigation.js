@@ -16,10 +16,8 @@ import Companies from '../Companies';
 import Vacancies from '../Vacancies';
 import Students from '../Students';
 import PostNewVacancies from '../PostNewVacancies.js';
-import EditCompany from '../EditCompany';
-import EditStudent from '../EditStudent';
-
-
+import Ec from '../EditCompany';
+import Es from '../EditStudent';
 
 const { width, height } = Dimensions.get('window');
 
@@ -89,39 +87,18 @@ export default function Navigation() {
 
           <Stack.Screen name="Vacancies" component={Vacancies} options={{ headerShown: false }} />
           <Stack.Screen name="Companies" component={Companies} options={{ headerShown: false }} />
+          
 
           <Stack.Screen name="Students" component={Students} options={{ headerShown: false }} />
           <Stack.Screen name="PostNewVacancies" component={PostNewVacancies} options={{ headerShown: false }} />
           
 
-          <Stack.Screen name="AdminDashboard" component={AdminDashboard}
-            options={{
-              title: '  Admin Dashboard',
-              headerTintColor: '#ffff',
-              headerStyle: {
-                backgroundColor: '#3b7ae4',
-              },
-            }} />
-<Stack.Screen name="StudentDashboard" component={StudentDashboard}
-            options={{
-              title: '  Student Dashboard',
-              headerTintColor: '#ffff',
-              headerStyle: {
-                backgroundColor: '#3b7ae4',
-              },
-            }} />
-          <Stack.Screen name="CompanyDashboard" component={CompanyDashboard}
-            options={{
-              title: '  Company Dashboard',
-              headerTintColor: '#ffff',
-              headerStyle: {
-                backgroundColor: '#3b7ae4',
-              },
-            }} />
-          <Stack.Screen name="EditStudent" component={EditStudent} options={{ headerShown: false }} />
-          <Stack.Screen name="EditCompany" component={EditCompany} options={{ headerShown: false }} />
-
-
+          <Stack.Screen name="AdminDashboard" component={AdminDashboard} options={{ headerShown: false }}/>
+          <Stack.Screen name="StudentDashboard" component={StudentDashboard} options={{ headerShown: false }} />
+          <Stack.Screen name="CompanyDashboard" component={CompanyDashboard} options={{ headerShown: false }} />
+          
+          <Stack.Screen name="ES" component={Es} options={{ headerShown: false }} />
+          <Stack.Screen name="EC" component={Ec} options={{ headerShown: false }} />
          
           {/* </>
             } */}

@@ -1,19 +1,15 @@
   
 import React, { useState, useEffect } from 'react'
 import { View, StyleSheet, Dimensions, Alert, StatusBar, Image, Modal, TouchableOpacity, ActivityIndicator, PermissionsAndroid } from 'react-native'
-import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import firebase from '@react-native-firebase/app'
 import { Content, Item, Input, Label, Button, Text, Left, Body, Right, Icon, } from 'native-base';
 import RNPickerSelect from 'react-native-picker-select';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 const { width, height } = Dimensions.get('window');
-import { useSelector } from 'react-redux'
-import Signup from './Signup';
 
-export default function Student({navigation, route}) {
-
-
+export default function Es({navigation, route}) {
+console.log("===eeeestude>",route.params)
     const [su, setsu] = useState(false)
     setTimeout(() => {
         setsu(false)
@@ -24,6 +20,7 @@ export default function Student({navigation, route}) {
     var dateTime = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear() + "    " +
         today.getHours() + ":" + today.getMinutes();
 
+
     const [fn, setFn] = useState('')
     const [ln, setLn] = useState('')
     const [age, setAge] = useState('')
@@ -32,8 +29,28 @@ export default function Student({navigation, route}) {
     const [skills, setSkills] = useState('')
     const [department, setDepartment] = useState('')
     const [pn, setPn] = useState('')
-    const [signupemail, setSignupemail] = useState('')
-    const [signuppassword, setSignuppassword] = useState('')
+
+    useEffect(() => {
+        firestore().collection('Student').doc(route.params.email).get()
+            .then(function (doc) {
+                    setFn(doc.data().FirstName),
+                    setLn(doc.data().LastName),
+                    setAge(doc.data().Age),
+                    setGender(doc.data().Gender),
+                    setQualification(doc.data().Qualification),
+                    setSkills(doc.data().Skills),
+                    setDepartment(doc.data().Department),
+                    setPn(doc.data().PhoneNum)
+            })
+            .then(() => {
+                console.log('✅ Search Successfull')
+            })
+            .catch((error) => {
+                console.log(error.message);
+                console.log('⚠️ This Key Is Not Present In Database', error.message)
+            });
+    }, [])
+   
 
     const userSignUp = () => {
         if (fn.length == '' || ln.length == '' || age.length == '' || pn.length == '') {
@@ -54,20 +71,9 @@ export default function Student({navigation, route}) {
         else if (department == null) {
             Alert.alert("Department", "Please Select Department")
         }
-        else if (signupemail.length == '') {
-            Alert.alert("Email", "Please Enter Email")
-        }
-        else if (signuppassword.length == '') {
-            Alert.alert("Password", "Please Enter Password")
-        }
-        else if (signuppassword.length < 6) {
-            Alert.alert("Password", "Minimum 6 Character Or Digits")
-        }
         else {
             setsu(true)
-            auth().createUserWithEmailAndPassword(signupemail, signuppassword)
-                .then(() => {
-                    firestore().collection('Student').doc(signupemail).set({
+                    firestore().collection('Student').doc(route.params.email).update({
                         FirstName: fn,
                         LastName: ln,
                         Age: age,
@@ -77,41 +83,13 @@ export default function Student({navigation, route}) {
                         Department: department,
                         PhoneNum: pn,
                         Type:'Student',
-                        StudentEmail: signupemail,
+                        // StudentEmail: route.params.email,
                         DateTime: dateTime,
                         TimeStamp: firebase.firestore.FieldValue.serverTimestamp()
                     }).then(() => {
-                        setFn("")
-                        setLn("")
-                        setAge("")
-                        setGender("")
-                        setQualification("")
-                        setSkills("")
-                        setDepartment("")
-                        setPn("")
-                        setSignupemail("")
-                        setSignuppassword("")
-                        // navigation.replace('Signin')
-                        navigation.goBack()
-                        Alert.alert('Congratulations! ' +fn , 'You Are Successfully Registered As a Student! Proceed To LogIn');
+                        Alert.alert('Edit! ', 'Sucessfull');
                     })
-                })
-                .catch(error => {
-                    if (error.code === 'auth/email-already-in-use') {
-                        Alert.alert('This email address is already in use!');
-                    }
-                    if (error.code === 'auth/invalid-email') {
-                        Alert.alert('This email address is invalid!');
-                    }
-                    if (error.code === 'auth/weak-password') {
-                        Alert.alert('Weak Password!');
-                    }
-                    // if (error) {
-                    // Alert.alert("Error", error.message);
-                    // }
-                    // console.error(error);
-                    // console.log(error.message);
-                })
+            
         }
     }
 
@@ -127,7 +105,7 @@ export default function Student({navigation, route}) {
                             <Ionicons name="md-chevron-back" size={30} color="#ffff" />
                         </Text>
                     </TouchableOpacity>
-                    <Text style={{ color: 'white', fontWeight: 'bold', marginVertical: 18, fontSize: 18 }}>CREATE STUDENT ACCOUNT</Text>
+                    <Text style={{ color: 'white', fontWeight: 'bold', marginVertical: 18, fontSize: 18 }}>Edit Student Details</Text>
                     <Text></Text>
                 </View>
 
@@ -165,9 +143,13 @@ export default function Student({navigation, route}) {
 
  <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14, }}>
 
-<View style={{ width: '48%', }}>
+<View style={{ width: '45%', }}>
+<View style={{ flexDirection: 'row' }}>
+                            <Label style={{ color: '#ffff', fontSize: 15, opacity: 0.7 }}>Gender:  </Label>
+                            <Label style={{ color: '#ffff', fontSize: 15.2, opacity: 0.9 }}>{gender}</Label>
+                        </View>
     <RNPickerSelect onValueChange={(text) => { setGender(text) }}
-        placeholder={{ label: "Gender ▼", value: null }}
+        placeholder={{ label: "Gender ▼", value: gender }}
         style={{ ...pickerSelectStyles }}
         itemStyle={{ color: "white" }}
         useNativeAndroidPickerStyle={false}
@@ -178,9 +160,13 @@ export default function Student({navigation, route}) {
     />
 </View>
 
-<View style={{ width: '50%' }}>
+<View style={{ width: '53%' }}>
+<View style={{ flexDirection: 'row' }}>
+                            <Label style={{ color: '#ffff', fontSize: 15, opacity: 0.7 }}>Depart:  </Label>
+                            <Label style={{ color: '#ffff', fontSize: 15.2, opacity: 0.9 }}>{department}</Label>
+                        </View>
     <RNPickerSelect onValueChange={(text) => { setDepartment(text) }}
-        placeholder={{ label: "Departments ▼", value: null, }}
+        placeholder={{ label: "Departments ▼", value: department, }}
         style={{ ...pickerSelectStyles }}
         useNativeAndroidPickerStyle={false}
         items={[
@@ -222,26 +208,6 @@ export default function Student({navigation, route}) {
                         value={pn} />
                 </Item>
 
-                <Item floatingLabel style={{ marginBottom: 13, color: '#ffff' }}>
-                    <Label style={{ color: '#ffff' }}>Email</Label>
-                    <Input
-                        maxLength={20}
-                        keyboardType="email-address"
-                        style={{ color: '#ffff' }}
-                        onChangeText={text => setSignupemail(text)}
-                        value={signupemail} />
-                </Item>
-
-                <Item floatingLabel style={{ marginBottom: 15, color: '#ffff' }}>
-                    <Label style={{ color: '#ffff' }}>Password</Label>
-                    <Input
-                        maxLength={15}
-                        secureTextEntry={true}
-                        style={{ color: '#ffff' }}
-                        onChangeText={text => setSignuppassword(text)}
-                        value={signuppassword} />
-                </Item>
-
 
                 <TouchableOpacity activeOpacity={0.7}
                     style={{ elevation: 3, flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffff', marginTop: 1, margin: 5, height: 50, borderRadius: 50, }}
@@ -249,7 +215,7 @@ export default function Student({navigation, route}) {
                     {su ?
                         <ActivityIndicator size="small" color="black" />
                         :
-                        <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 16 }}>CREATE</Text>
+                        <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 16 }}>EDIT DONE</Text>
                     }
                 </TouchableOpacity>
 
