@@ -65,6 +65,7 @@ console.log(dd)
                         VacancyDateTime: dateTime,
                         CompanyReg: dd.DateTime,
                         TimeStamp: firebase.firestore.FieldValue.serverTimestamp(),
+                        Type: 'Company',
                         Apply: 'false'
                     })
                     .then(() => {

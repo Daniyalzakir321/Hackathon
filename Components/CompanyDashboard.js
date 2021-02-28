@@ -63,6 +63,11 @@ export default function CompanyDashboard({navigation, route}) {
                             <Text style={{ fontSize: 15, fontWeight: 'bold', color: "#3b7ae4", textShadowColor: 'grey', textShadowOffset: { width: 0.1, height: 1 }, textShadowRadius: 2 }}></Text>
                         </TouchableOpacity>
 
+                        <TouchableOpacity activeOpacity={0.8} onPress={() => { navigation.navigate('Vacancies') }} style={{ backgroundColor: '#ffff', borderRadius: 10, padding: 20, paddingHorizontal: 25, alignItems: 'center', borderColor: "#3b7ae4", borderWidth: 3, marginTop:20 }} >
+                            <Text style={{ fontSize: 24, fontWeight: 'bold', color: "#3b7ae4", textShadowColor: 'grey', textShadowOffset: { width: 0.1, height: 1 }, textShadowRadius: 2 }}>All Posted Vacancy's</Text>
+                            <Text style={{ fontSize: 22, fontWeight: 'bold', color: "#3b7ae4", textShadowColor: 'grey', textShadowOffset: { width: 0.1, height: 1 }, textShadowRadius: 2 }}>By My Own Company</Text>
+                        </TouchableOpacity>
+
                         <TouchableOpacity activeOpacity={0.8} onPress={() => { SignOut() }} style={{ backgroundColor: '#ffff', borderRadius: 10, padding: 20, paddingHorizontal: 26, elevation: 5, alignItems: 'center', borderColor: "#3b7ae4", borderWidth: 3, marginTop:20 }} >
                         <Text style={{ fontSize: 15, fontWeight: 'bold', color: "#3b7ae4", textShadowColor: 'grey', textShadowOffset: { width: 0.1, height: 1 }, textShadowRadius: 2 }}></Text>
                             <Text style={{ fontSize: 25, fontWeight: 'bold', color: "#3b7ae4", textShadowColor: 'grey', textShadowOffset: { width: 0.1, height: 1 }, textShadowRadius: 2 }}> SignOut </Text>

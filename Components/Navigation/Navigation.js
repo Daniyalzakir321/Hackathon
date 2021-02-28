@@ -26,7 +26,7 @@ const Stack = createStackNavigator();
 
 
 export default function Navigation() {
-  // Set an initializing state whilst Firebase connects
+  // // Set an initializing state whilst Firebase connects
   // const [initializing, setInitializing] = useState(true);
   // const [user, setUser] = useState();
 
@@ -55,7 +55,6 @@ export default function Navigation() {
         <StatusBar backgroundColor="#3b7ae4" style={{ color: 'white' }} barStyle="light-content" />
         <View style={{ flex: 1, backgroundColor: '#3b7ae4', alignItems: 'center' }} >
 
-
           <Text style={{ color: '#ffff', fontWeight: 'bold', fontSize: 27, marginTop: 100 }}>Campus Recruitment</Text>
           <Text style={{ color: '#ffff', fontWeight: 'bold', fontSize: 27 }}>System</Text>
 
@@ -73,9 +72,6 @@ export default function Navigation() {
         <Stack.Navigator >
           {/* {(!user)?
            <>    */}
-
-
-
           <Stack.Screen name="Main" component={Main} options={{ headerShown: false }} />
           <Stack.Screen name="Signin" component={Signin} options={{ headerShown: false }} />
           <Stack.Screen name="Admin" component={Admin} options={{ headerShown: false }} />
@@ -84,15 +80,12 @@ export default function Navigation() {
           {/* </>
           :
            <> */}
-
           <Stack.Screen name="Vacancies" component={Vacancies} options={{ headerShown: false }} />
           <Stack.Screen name="Companies" component={Companies} options={{ headerShown: false }} />
-          
-
+        
           <Stack.Screen name="Students" component={Students} options={{ headerShown: false }} />
           <Stack.Screen name="PostNewVacancies" component={PostNewVacancies} options={{ headerShown: false }} />
           
-
           <Stack.Screen name="AdminDashboard" component={AdminDashboard} options={{ headerShown: false }}/>
           <Stack.Screen name="StudentDashboard" component={StudentDashboard} options={{ headerShown: false }} />
           <Stack.Screen name="CompanyDashboard" component={CompanyDashboard} options={{ headerShown: false }} />

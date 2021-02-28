@@ -8,11 +8,11 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Fontisto from 'react-native-vector-icons/Fontisto';
-import { useDispatch } from 'react-redux';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import RNPickerSelect from 'react-native-picker-select';
 import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux';
+import RNPickerSelect from 'react-native-picker-select';
 
 
 export default function PostNewVacancies({ navigation, route }) {
@@ -164,16 +164,16 @@ const edit = (StudentEmail)=>{
                                     }
                                 </View>
                                 <View>
-                                    <Text style={{ fontSize: 15, paddingTop: 14 }}>   FName:    {d.fn}</Text>
-                                    <Text style={{ fontSize: 15, paddingTop: 2 }}>   LName:    {d.ln}</Text>
-                                    <Text style={{ fontSize: 15, textTransform: 'capitalize', paddingTop: 2 }}>   Age:          {d.age}</Text>
-                                    <Text style={{ fontSize: 15, textTransform: 'capitalize', paddingTop: 2 }}>   Gender:    {d.gender}</Text>
-                                    <Text style={{ fontSize: 15, textTransform: 'capitalize', paddingTop: 2 }}>   Depart:     {d.department}</Text>
-                                    <Text style={{ fontSize: 15, textTransform: 'capitalize', paddingTop: 2 }}>   Skills:        {d.skills}</Text>
-                                    <Text style={{ fontSize: 15, textTransform: 'capitalize', paddingTop: 2 }}>   Qualifi:      {d.qualification}</Text>
-                                    <Text style={{ fontSize: 15, textTransform: 'capitalize', paddingTop: 2 }}>   Email:        {d.StudentEmail}</Text>
-                                    <Text style={{ fontSize: 15, textTransform: 'capitalize', paddingTop: 2 }}>   Phone:      {d.pn}</Text>
-                                    <Text style={{ fontSize: 15, textTransform: 'capitalize', paddingTop: 2 }}>   Reg At:      {d.DateTime}</Text>
+                                    <Text style={{ fontSize: 15, paddingTop: 14 }}><Ionicons name="md-person-circle" size={12.5} color="black" />  FName:    {d.fn}</Text>
+                                    <Text style={{ fontSize: 15, paddingTop: 2 }}><Ionicons name="md-person-circle-outline" size={12.5} color="black" />  LName:    {d.ln}</Text>
+                                    <Text style={{ fontSize: 15, textTransform: 'capitalize', paddingTop: 2 }}><Fontisto name="person" size={11.3} color="black" />   Age:          {d.age}</Text>
+                                    <Text style={{ fontSize: 15, textTransform: 'capitalize', paddingTop: 2 }}><MaterialCommunityIcons name="gender-male-female" size={11.3} color="black" />  Gender:     {d.gender}</Text>
+                                    <Text style={{ fontSize: 15, textTransform: 'capitalize', paddingTop: 2 }}><FontAwesome name="building" size={12} color="black" />   Depart:     {d.department}</Text>
+                                    <Text style={{ fontSize: 15, textTransform: 'capitalize', paddingTop: 2 }}><Fontisto name="code" size={11.3} color="black" />  Skills:        {d.skills}</Text>
+                                    <Text style={{ fontSize: 15, textTransform: 'capitalize', paddingTop: 2 }}><FontAwesome name="graduation-cap" size={12} color="black" />  Qualifi:      {d.qualification}</Text>
+                                    <Text style={{ fontSize: 15, textTransform: 'capitalize', paddingTop: 2 }}><MaterialCommunityIcons name="email" size={11.3} color="black" />   Email:        {d.StudentEmail}</Text>
+                                    <Text style={{ fontSize: 15, textTransform: 'capitalize', paddingTop: 2 }}><FontAwesome name="phone" size={12} color="black" />    Phone:      {d.pn}</Text>
+                                    <Text style={{ fontSize: 15, textTransform: 'capitalize', paddingTop: 2 }}><Entypo name="back-in-time" size={11.3} color="black" />   Reg At:      {d.DateTime}</Text>
                                 </View>
                             </View>
 

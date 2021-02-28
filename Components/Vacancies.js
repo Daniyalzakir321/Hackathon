@@ -35,7 +35,7 @@ export default function Vacancies({ navigation }) {
                     pn: doc.data().PhoneNum,
                     dateTime: doc.data().DateTime,
                     apply: doc.data().Apply,
-
+                    type: doc.data().Type,
                 }))
 
             )
@@ -98,10 +98,7 @@ export default function Vacancies({ navigation }) {
                 {data.map((d, i) => {
                     return <>
                         <TouchableOpacity activeOpacity={0.8} key={i} onPress={() => {
-                            // navigation.navigate('Main', {
-                            //     key: d.Id,
-                            //     cn: d.cn,
-                            // })
+
                         }} style={styles.data} key={i}>
 
                             <View style={{
@@ -109,7 +106,7 @@ export default function Vacancies({ navigation }) {
                                 // flexDirection: 'row',
                             }}>
 
-                                {(datar.UserEmail) == 'admin@admin.com' ? <View style={{ position: 'absolute', right: -20 }}>
+                                {datar.UserEmail == 'admin@admin.com' || (d.type=='Company' && datar.UserEmail==d.email) ?  <View style={{ position: 'absolute', right: -30 }}>
                                     <TouchableOpacity activeOpacity={0.4} onPress={() => { del(d.Id) }}
                                         style={{ marginVertical: 14, width: 30, borderRadius: 50 }}>
                                         <Text style={{
@@ -118,7 +115,7 @@ export default function Vacancies({ navigation }) {
                                         }}><MaterialCommunityIcons name="delete" size={30} color="black" /></Text>
                                     </TouchableOpacity>
 
-                                    <TouchableOpacity activeOpacity={0.4} onPress={() => { edit(d.Id) }}
+                                    <TouchableOpacity activeOpacity={0.4} onPress={() => { }}
                                         style={{ marginVertical: 14, width: 30, borderRadius: 50 }}>
                                         <Text style={{
                                             color: '#ffff', fontWeight: 'bold', fontSize: 27,
@@ -145,22 +142,23 @@ export default function Vacancies({ navigation }) {
 
                                 </View>
                             </View>
+                            {(d.type=='Company') ?<>
                             {d.apply == 'true' ?
-                                <TouchableOpacity style={{ backgroundColor: "#3b7ae4", borderRadius: 15, marginVertical: 15 }} onPress={() => { Appl("true", d.Id) }}>
-                                    <Text style={{
-                                        fontSize: 17, fontWeight: 'bold', color: '#ffff', paddingHorizontal: 20, paddingVertical: 5,
-                                    }}>  Applied  </Text>
-                                </TouchableOpacity>
-
-                                :
-
-                                    <TouchableOpacity style={{ backgroundColor: "#3b7ae4", borderRadius: 15, marginVertical: 15 }} onPress={() => { Appl("false", d.Id) }}>
-                                        <Text style={{
-                                            fontSize: 17, fontWeight: 'bold', color: '#ffff', paddingHorizontal: 20, paddingVertical: 5,
-                                        }}>  Apply  </Text>
-                                    </TouchableOpacity>
-                                 
-                            }
+                             <TouchableOpacity style={{ backgroundColor: "#3b7ae4", borderRadius: 15, marginVertical: 15 }} onPress={() => { Appl("true", d.Id) }}>
+                                 <Text style={{
+                                     fontSize: 17, fontWeight: 'bold', color: '#ffff', paddingHorizontal: 20, paddingVertical: 5,
+                                 }}>  Applied  </Text>
+                             </TouchableOpacity>
+                             :
+                             <TouchableOpacity style={{ backgroundColor: "#3b7ae4", borderRadius: 15, marginVertical: 15 }} onPress={() => { Appl("false", d.Id) }}>
+                                     <Text style={{
+                                         fontSize: 17, fontWeight: 'bold', color: '#ffff', paddingHorizontal: 20, paddingVertical: 5,
+                                     }}>  Apply  </Text>
+                             </TouchableOpacity>
+                         }
+                            </>:(d.type!='Company') ?<>
+                         
+                            </>:<></>}
 
 
                         </TouchableOpacity>

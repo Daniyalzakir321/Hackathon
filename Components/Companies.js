@@ -88,7 +88,7 @@ export default function Companies({ navigation, route }) {
                         }}>
 
 
-                            {(datar.UserEmail) == 'admin@admin.com' ? <View style={{ position: 'absolute', right: -50 }}>
+                            {(datar.UserEmail) == 'admin@admin.com' ? <View style={{ position: 'absolute', right: -40 }}>
 
                                 <TouchableOpacity activeOpacity={0.4} onPress={() => { del(d.CompanyEmail) }}
                                     style={{ marginVertical: 14, width: 30, borderRadius: 50 }}>

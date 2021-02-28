@@ -68,6 +68,12 @@ export default function Signin({ navigation, route }) {
 
     return (
         <View style={styles.container}>
+              <View style={{alignItems:'center'}}>
+            <Text style={{
+                    color: 'white', fontWeight: 'bold', marginVertical: 20, fontSize: 22,
+                    textShadowColor: 'grey', textShadowOffset: { width: 0.2, height: 0.2 }, textShadowRadius: 5,
+                }}>{route.params.LoginType} LogIn</Text>
+            </View>
         <StatusBar backgroundColor="#3b7ae4" />
         <View style={{alignItems:'center'}}>
             <Image source={require('./Images/splasht.png')}
